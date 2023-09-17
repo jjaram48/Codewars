@@ -1,0 +1,61 @@
+# Python version 3.8.2
+
+def spin_words(sentence):
+
+    currentWord = ""
+    finalSentence = ""
+    lastSpaceIndex = -1
+
+    for i in range(len(sentence)):
+        
+
+        # Add letter to finalSentence:
+        if finalSentence == "":
+            finalSentence = sentence[i]
+        else:
+            finalSentence = finalSentence + sentence[i]
+
+        if sentence[i] != " ":
+            
+            currentWord = currentWord + (sentence[i])
+            
+            if i == len(sentence) - 1:
+                
+                if (len(currentWord) >= 5):
+                    print("need to invert this word " )
+                    currentWord = currentWord[::-1]
+                    print("Reversed word:", currentWord)
+
+                    # Delete the letters from finalSentence until lastSpaceIndex
+                    while len(finalSentence) > lastSpaceIndex + 1:
+                        finalSentence = finalSentence[:-1]
+                        print("deleting until LastSpaceIndex:",finalSentence)
+
+                    finalSentence = finalSentence + currentWord
+                    print("Finally:",finalSentence)
+                    return finalSentence
+                
+                print("Finally:",finalSentence)
+                return finalSentence
+            
+        elif sentence[i] == " ":
+
+            if (len(currentWord) >= 5):
+
+                print("need to invert this word " )
+                currentWord = currentWord[::-1]
+                print("Reversed word:", currentWord)
+
+                # As this is the first word, delete the letters from finalSentence until the beginning
+                while len(finalSentence) > lastSpaceIndex + 1:
+                    finalSentence = finalSentence[:-1]
+                    print("deleting until LastSpaceIndex:",finalSentence)
+
+                finalSentence = finalSentence + currentWord + " "
+
+            print("end of word")
+            lastSpaceIndex = i
+            print("lastSpaceIndex",lastSpaceIndex)
+            currentWord = ""
+
+spin_words("to")
